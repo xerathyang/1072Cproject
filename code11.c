@@ -2,14 +2,10 @@
 #include <math.h>
 #include <stdlib.h>
 
-void badcode(){
-    puts("bad code");
-}
-
 int main(){
 
     FILE *filePtr;
-    int codeLength;
+    unsigned int codeLength=1;
     int smallest =150;
     int reverse;
 
@@ -43,13 +39,18 @@ int main(){
 			reverse=1;
 		}else{
 			puts("bad code");
-			exit(0);
+			continue;
+		}
+		
+		if(reverse=0){
+			
+			
 		}
 
-		for(int u=0; u <codeLength;u++){
-			printf("%d ",codeContent[u]);
-			if(u%10 ==0)
-				puts("");
-		}
+		//for(int u=0; u <codeLength;u++){
+		//	printf("%d ",codeContent[u]);
+		//	if(u%10 ==0)
+		//		puts("");
+		//}
 	}
 }
