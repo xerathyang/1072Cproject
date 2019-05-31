@@ -58,38 +58,46 @@ int main(){
 		}
 		puts("");
 		
-		for(int y=1; y<=encodeLength+2;y++){
-			if(codeContent[5*y+2]==1){
-				if(codeContent[5*y+3]==1){
+		for(int u=0; u <codeLength;u++){
+			printf("%d ",codeContent[u]);
+			count++;
+			if(count%10 ==0)
+				puts("");
+		}
+		
+		for(int y=1; y<=encodeLength-2;y++){
+			if(codeContent[5*y+2]==1){//1XXXX
+				if(codeContent[5*y+3]==1){//11000
 					printf("5");
-				}else if(codeContent[5*y+4]==1){
+				}else if(codeContent[5*y+4]==1){//10100
 					printf("3");
-				}else if(codeContent[5*y+5]==1){
+				}else if(codeContent[5*y+5]==1){//10010
 					printf("1");
-				}else if(codeContent[5*y+6]==1){
+				}else if(codeContent[5*y+6]==1){//10001
 					printf("8");
-				}else{
+				}else{//10000
 					printf("0");
 				}
 			}else{
-				if(codeContent[5*y+3]==0){
-					if(codeContent[5*y+4]==0){
-						if(codeContent[5*y+5]==0){
+				if(codeContent[5*y+3]==0){//00XXX
+					if(codeContent[5*y+4]==0){//000XX
+						if(codeContent[5*y+5]==0){//0000X
 							printf("9");
-						}else{
+						}else{//0001X
 							printf("2");
 						}
-					}else if(codeContent[5*y+5]==1){
-						printf("S");
-					}else if(codeContent[5*y+6]==1){
-						printf("6");
-					}else{
-						printf("-");
+					}else{//001XX
+						if(codeContent[5*y+5==1]){//0011X
+							printf("S");
+							system("pause");
+						}else if(codeContent[5*y+6==1]){
+							printf("6");
+						}else{
+							printf("-");
+						}
 					}
-				}else if(codeContent[5*y+4]==1){
-					printf("4");
-				}else{
-					printf("7");
+				}
+				
 				}
 			}
 				
