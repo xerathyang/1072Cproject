@@ -9,11 +9,11 @@ int main(){
     unsigned int codeLength,count=1;
     int smallest =150;
     int encodeLength,hold;
-	int realc,realk=0;
-	unsigned int badcode=0;
-	int codeContent[200];
-	int encodeContent[34];
-	char rowcheck='1';
+    int realc,realk=0;
+    unsigned int badcode=0;
+    int codeContent[200];
+    int encodeContent[34];
+    char rowcheck='1';
 
 
     //check file and get file pointer
