@@ -10,7 +10,7 @@ int main(){
     int reverse,encodeLength,hold;
 	int realc,realk=0;
 	int codeContent[200];
-	int encodeContent[35];
+	int encodeContent[34];
 
     //check file and get length
     if((filePtr=fopen("test1.txt","r"))==NULL){
@@ -55,17 +55,17 @@ int main(){
 		}
 		
 		for(int y=0; y<encodeLength;y++){
-			if(codeContent[6*y+6]==1){//1XXXX
-				if(codeContent[6*y+6+1]==1){//11000
+			if(codeContent[6*(y+1)]==1){//1XXXX
+				if(codeContent[6*(y+1)+1]==1){//11000
 					//printf("5");
 					encodeContent[y]=5;
-				}else if(codeContent[6*y+6+2]==1){//10100
+				}else if(codeContent[6*(y+1)+2]==1){//10100
 					//printf("3");
 					encodeContent[y]=3;
-				}else if(codeContent[6*y+6+3]==1){//10010
+				}else if(codeContent[6*(y+1)+3]==1){//10010
 					//printf("1");
 					encodeContent[y]=1;
-				}else if(codeContent[6*y+6+4]==1){//10001
+				}else if(codeContent[6*(y+1)+4]==1){//10001
 					//printf("8");
 					encodeContent[y]=8;
 				}else{//10000
@@ -73,9 +73,9 @@ int main(){
 					encodeContent[y]=0;
 				}
 			}else{//0XXXX
-				if(codeContent[6*y+6+1]==0){//00XXX
-					if(codeContent[6*y+6+2]==0){//000XX
-						if(codeContent[6*y+6+3]==0){//0000X
+				if(codeContent[6*(y+1)+1]==0){//00XXX
+					if(codeContent[6*(y+1)+2]==0){//000XX
+						if(codeContent[6*(y+1)+3]==0){//0000X
 							//printf("9");
 							encodeContent[y]=9;
 						}else{//0001X
@@ -83,10 +83,10 @@ int main(){
 							encodeContent[y]=2;
 						}
 					}else{//001XX
-						if(codeContent[6*y+6+3]==1){//0011X
+						if(codeContent[6*(y+1)+3]==1){//0011X
 							printf("bad code(start code wrong place)");
 							exit(0);
-						}else if(codeContent[6*y+6+4]==1){//00
+						}else if(codeContent[6*(y+1)+4]==1){//00
 							//printf("6");
 							encodeContent[y]=6;
 						}else{
@@ -94,7 +94,7 @@ int main(){
 							encodeContent[y]=10;
 						}
 					}
-				}else if(codeContent[6*y+6+2]==1){
+				}else if(codeContent[6*(y+1)+2]==1){
 					//printf("4");
 					encodeContent[y]=4;
 				}else{
@@ -139,5 +139,6 @@ int main(){
 		count++;
 		puts("");
 	}
+	fclose(filePtr);
 	system("pause");
 }
