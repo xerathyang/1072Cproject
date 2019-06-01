@@ -7,23 +7,31 @@ int main(){
     FILE *filePtr;
     unsigned int codeLength,count=1;
     int smallest =150;
-    int reverse,encodeLength,hold,badcode;
+    int encodeLength,hold,badcode;
 	int realc,realk=0;
 	int codeContent[200];
 	int encodeContent[34];
 
-    //check file and get length
+    //check file and get file pointer
     if((filePtr=fopen("test1.txt","r"))==NULL){
         puts("Couldnt find file.");
 		system("pause");
         exit(0);
     }
 	
+	//get length
 	fscanf(filePtr,"%d",&codeLength);
 	
+	//detect length to decide continue
 	while(codeLength!=0){
 		
+		//check code length
+		if((codeLength-11)%6==0){
 		encodeLength= (codeLength-11)/6;
+		}else{
+			puts("bad code(wrong code length)");
+			continue;
+		}
 		
 		printf("Case %d: ",count);
 		
@@ -37,6 +45,10 @@ int main(){
 			if(codeContent[x]<smallest)
 				smallest= codeContent[x];
         codeContent[x]=(int)round((float)codeContent[x]/smallest)-1;
+		}
+		
+		for(int i=0; i<codeLength; i++){
+			if()
 		}
 		
 		//check it whether is reverse or not
@@ -60,6 +72,7 @@ int main(){
 		//		puts("");
 		//}
 		
+		//detect code and decode
 		for(int y=0; y<encodeLength;y++){
 			//10000
 			if(codeContent[6*(y+1)]==1&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==0&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==0){
