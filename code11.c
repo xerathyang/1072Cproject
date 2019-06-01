@@ -1,19 +1,23 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(){
 
     FILE *filePtr;
     unsigned int codeLength,count=1;
     int smallest =150;
-    int encodeLength,hold,badcode;
+    int encodeLength,hold;
 	int realc,realk=0;
+	unsigned int badcode=0;
 	int codeContent[200];
 	int encodeContent[34];
+	char rowcheck='1';
+
 
     //check file and get file pointer
-    if((filePtr=fopen("test1.txt","r"))==NULL){
+    if((filePtr=fopen("badtest.txt","r"))==NULL){
         puts("Couldnt find file.");
 		system("pause");
         exit(0);
@@ -25,15 +29,29 @@ int main(){
 	//detect length to decide continue
 	while(codeLength!=0){
 		
+		printf("Case %d: ",count);
+		count++;
+		
 		//check code length
 		if((codeLength-11)%6==0){
-		encodeLength= (codeLength-11)/6;
+			encodeLength= (codeLength-11)/6;
 		}else{
 			puts("bad code(wrong code length)");
+			
+			for(int j=0;j<2;){
+				while(rowcheck!='\n'){
+					rowcheck=getc(filePtr);
+				}
+				
+			}
+			
+
+
+
+			
+			fscanf(filePtr,"%d",&codeLength);
 			continue;
 		}
-		
-		printf("Case %d: ",count);
 		
 		//get content
 		for(int i=0; i <codeLength;i++){
@@ -42,13 +60,32 @@ int main(){
 
 		//find smallest and convert content to binary
 		for(int x=0; x <codeLength;x++){
+			if(codeContent[x]==0){
+				badcode=3;
+				break;
+			}
 			if(codeContent[x]<smallest)
 				smallest= codeContent[x];
-        codeContent[x]=(int)round((float)codeContent[x]/smallest)-1;
+			codeContent[x]=(int)round((float)codeContent[x]/smallest)-1;
+		}
+		
+		if(badcode==3){
+			puts("badcode(content length is wrong)");
+			fscanf(filePtr,"%d",&codeLength);
+			continue;
 		}
 		
 		for(int i=0; i<codeLength; i++){
-			if()
+			if(codeContent[i]==0||codeContent[i]==1){
+			}else{
+				badcode=4;
+			}
+		}
+		
+		if(badcode==4){
+			puts("badcode(code content has wrong)");
+			fscanf(filePtr,"%d",&codeLength);
+			continue;
 		}
 		
 		//check it whether is reverse or not
@@ -109,17 +146,18 @@ int main(){
 				encodeContent[y]=10;
 			}else{
 				badcode=2;
-			}
-			
+			}	
 		}
 		
 		if(badcode==1){
 			puts("badcode(start code lost)");
 			system("pause");
+			fscanf(filePtr,"%d",&codeLength);
 			continue;
 		}else if(badcode==2){
 			puts("bad code(encoding code not find)");
 			system("pause");
+			fscanf(filePtr,"%d",&codeLength);
 			continue;
 		}
 		
@@ -142,6 +180,7 @@ int main(){
 		realc=realc%11;
 		if(realc!=encodeContent[encodeLength-2]){
 			puts("bad C");
+			fscanf(filePtr,"%d",&codeLength);
 			continue;
 		}
 		
@@ -153,10 +192,11 @@ int main(){
 		realk=realk%9;
 		if(realk!=encodeContent[encodeLength-1]){
 			puts("bad K");
+			fscanf(filePtr,"%d",&codeLength);
 			continue;
 		}
+		//fscanf(filePtr,"%d",&codeLength);
 		fscanf(filePtr,"%d",&codeLength);
-		count++;
 		puts("");
 	}
 	fclose(filePtr);
