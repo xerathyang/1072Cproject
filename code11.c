@@ -7,7 +7,7 @@ int main(){
     FILE *filePtr;
     unsigned int codeLength,count=1;
     int smallest =150;
-    int reverse,encodeLength,hold;
+    int reverse,encodeLength,hold,badcode;
 	int realc,realk=0;
 	int codeContent[200];
 	int encodeContent[34];
@@ -49,60 +49,67 @@ int main(){
 				codeContent[codeLength-z-1]=hold;
 			}
 		}else{
-			puts("bad code(start code lost)");
+			badcode=1;
+		}
+		
+		//for test
+		//puts("");
+		//for(int i=0; i<codeLength; i++){
+		//	printf("%d ",codeContent[i]);
+		//	if((i+1)%10==0)
+		//		puts("");
+		//}
+		
+		for(int y=0; y<encodeLength;y++){
+			//10000
+			if(codeContent[6*(y+1)]==1&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==0&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==0){
+				encodeContent[y]=0;
+			//10010
+			}else if(codeContent[6*(y+1)]==1&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==0&&codeContent[6*(y+1)+3]==1&&codeContent[6*(y+1)+4]==0){
+				encodeContent[y]=1;
+			//00011
+			}else if(codeContent[6*(y+1)]==0&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==0&&codeContent[6*(y+1)+3]==1&&codeContent[6*(y+1)+4]==1){
+				encodeContent[y]=2;
+			//10100
+			}else if(codeContent[6*(y+1)]==1&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==1&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==0){
+				encodeContent[y]=3;
+			//01100
+			}else if(codeContent[6*(y+1)]==0&&codeContent[6*(y+1)+1]==1&&codeContent[6*(y+1)+2]==1&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==0){
+				encodeContent[y]=4;
+			//11000
+			}else if(codeContent[6*(y+1)]==1&&codeContent[6*(y+1)+1]==1&&codeContent[6*(y+1)+2]==0&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==0){
+				encodeContent[y]=5;
+			//00101
+			}else if(codeContent[6*(y+1)]==0&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==1&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==1){
+				encodeContent[y]=6;
+			//01001
+			}else if(codeContent[6*(y+1)]==0&&codeContent[6*(y+1)+1]==1&&codeContent[6*(y+1)+2]==0&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==1){
+				encodeContent[y]=7;
+			//10001
+			}else if(codeContent[6*(y+1)]==1&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==0&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==1){
+				encodeContent[y]=8;
+			//10001
+			}else if(codeContent[6*(y+1)]==1&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==0&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==1){
+				encodeContent[y]=9;
+			//00110
+			}else if(codeContent[6*(y+1)]==0&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==1&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==0){
+				encodeContent[y]=10;
+			}else{
+				badcode=2;
+			}
+			
+		}
+		
+		if(badcode==1){
+			puts("badcode(start code lost)");
+			system("pause");
+			continue;
+		}else if(badcode==2){
+			puts("bad code(encoding code not find)");
 			system("pause");
 			continue;
 		}
 		
-		for(int y=0; y<encodeLength;y++){
-			if(codeContent[6*(y+1)]==1){//1XXXX
-				if(codeContent[6*(y+1)+1]==1){//11000
-					//printf("5");
-					encodeContent[y]=5;
-				}else if(codeContent[6*(y+1)+2]==1){//10100
-					//printf("3");
-					encodeContent[y]=3;
-				}else if(codeContent[6*(y+1)+3]==1){//10010
-					//printf("1");
-					encodeContent[y]=1;
-				}else if(codeContent[6*(y+1)+4]==1){//10001
-					//printf("8");
-					encodeContent[y]=8;
-				}else{//10000
-					//printf("0");
-					encodeContent[y]=0;
-				}
-			}else{//0XXXX
-				if(codeContent[6*(y+1)+1]==0){//00XXX
-					if(codeContent[6*(y+1)+2]==0){//000XX
-						if(codeContent[6*(y+1)+3]==0){//0000X
-							//printf("9");
-							encodeContent[y]=9;
-						}else{//0001X
-							//printf("2");
-							encodeContent[y]=2;
-						}
-					}else{//001XX
-						if(codeContent[6*(y+1)+3]==1){//0011X
-							printf("bad code(start code wrong place)");
-							exit(0);
-						}else if(codeContent[6*(y+1)+4]==1){//00
-							//printf("6");
-							encodeContent[y]=6;
-						}else{
-							//printf("-");
-							encodeContent[y]=10;
-						}
-					}
-				}else if(codeContent[6*(y+1)+2]==1){
-					//printf("4");
-					encodeContent[y]=4;
-				}else{
-					//printf("7");
-					encodeContent[y]=7;
-				}
-			}
-		}
 		
 		for(int r=0; r<encodeLength-2; r++){
 			if(encodeContent[r]!=10){
