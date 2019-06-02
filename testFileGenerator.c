@@ -17,7 +17,7 @@ int main(){
 	for(int x=1; x<=10; x++){
 	
 		testNum=rand()%150+1;
-		testBase=rand()%200+1;
+		testBase=rand()%100+1;
 		
 		sprintf(testContent[0],"%d",testNum);
 		sprintf(testContent[1],"\n");
@@ -26,8 +26,10 @@ int main(){
 			hold= rand()%11;
 			switch(hold){
 				case 0:
-					sprintf(testContent[y],"%d",testBase*2);
-					sprintf(testContent[y+1],"%d",);
+					sprintf(testContent[y],"%d ",testBase*2);
+					break;
+				case 1:
+					sprintf(testContent[y],"%d",testBase
 			
 			
 		}
