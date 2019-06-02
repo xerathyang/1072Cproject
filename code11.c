@@ -10,8 +10,8 @@ int main(){
     int smallest =150;
     int encodeLength,hold;
     unsigned int badcode,realc,realk,rowcounter=0;
-    int codeContent[200];
-    int encodeContent[34];
+    int codeContent[200]={0};
+    int encodeContent[34]={0};
     char rowcheck1,rowcheck2;
 	
 	void ptrMove(FILE *pFile){
@@ -44,6 +44,7 @@ int main(){
 	//detect length to decide continue
 	while(codeLength!=0){
 		
+		puts("");
 		printf("Case %d: ",count);
 		count++;
 		
@@ -62,16 +63,17 @@ int main(){
 		//get content
 		for(int i=0; i <codeLength;i++){
 			fscanf(filePtr,"%d",&codeContent[i]);
+			
 			//check content amount
-			if(getc(filePtr)=='\n'){
-				if(getc(filePtr)=='\n'){
-					badcode=3;
-					fseek(filePtr,-2,SEEK_CUR);
-					break;
-				}
-				fseek(filePtr,-1,SEEK_CUR);
-			}
-			fseek(filePtr,-1,SEEK_CUR);
+			//if(getc(filePtr)=='\n'){
+			//	if(getc(filePtr)=='\n'){
+			//		badcode=3;
+			//		fseek(filePtr,-2,SEEK_CUR);
+			//		break;
+			//	}
+			//	fseek(filePtr,-1,SEEK_CUR);
+			//}
+			//fseek(filePtr,-1,SEEK_CUR);
 		}
 		
 		if(badcode==3){
@@ -97,7 +99,7 @@ int main(){
 		}
 		
 		if(badcode==4){
-			puts("badcode(code content has wrong)");
+			puts("bad code(code content has wrong)");
 			
 			ptrMove(filePtr);
 			
@@ -158,16 +160,21 @@ int main(){
 			//10001
 			}else if(codeContent[6*(y+1)]==1&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==0&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==1){
 				encodeContent[y]=9;
-			//00110
+			//00100
 			}else if(codeContent[6*(y+1)]==0&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==1&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==0){
 				encodeContent[y]=10;
 			}else{
-				badcode=2;
+				if(y==encodeLength-2||y==encodeLength-1){
+					encodeContent[y]=11;
+				}else{
+					badcode=2;
+				}
 			}	
 		}
 		
+		//output bad code
 		if(badcode==1){
-			puts("badcode(start code lost)");
+			puts("bad code(start code lost)");
 			system("pause");
 			fscanf(filePtr,"%d",&codeLength);
 			continue;
@@ -177,17 +184,6 @@ int main(){
 			fscanf(filePtr,"%d",&codeLength);
 			continue;
 		}
-		
-		
-		for(int r=0; r<encodeLength-2; r++){
-			if(encodeContent[r]!=10){
-				printf("%d",encodeContent[r]);
-			}else{
-				printf("-");
-			}
-		}
-		
-		puts("");
 		
 		//C Check
 		realc=0;
@@ -212,9 +208,18 @@ int main(){
 			fscanf(filePtr,"%d",&codeLength);
 			continue;
 		}
-		//fscanf(filePtr,"%d",&codeLength);
-		fscanf(filePtr,"%d",&codeLength);
+		
+		//print the encode content
+		for(int r=0; r<encodeLength-2; r++){
+			if(encodeContent[r]!=10){
+				printf("%d",encodeContent[r]);
+			}else{
+				printf("-");
+			}
+		}
+		
 		puts("");
+		fscanf(filePtr,"%d",&codeLength);
 	}
 	fclose(filePtr);
 	system("pause");
