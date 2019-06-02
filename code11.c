@@ -13,7 +13,23 @@ int main(){
     int codeContent[200];
     int encodeContent[34];
     char rowcheck1,rowcheck2;
-
+	
+	void ptrMove(FILE *pFile){
+		//find next section
+			for(int j=0,rowcheck1='1',rowcheck2='1';j<2;){
+				rowcheck1=getc(pFile);
+				if(rowcheck1=='\n'){
+					j++;
+				}
+				rowcheck2=getc(pFile);
+				if(rowcheck2=='\n'){
+					break;
+				}else{
+					j=0;
+					rowcheck2=rowcheck1;
+				}
+			}
+	}
 
     //check file and get file pointer
     if((filePtr=fopen("badtest.txt","r"))==NULL){
@@ -37,20 +53,7 @@ int main(){
 		}else{
 			puts("bad code(wrong code length)");
 			
-			//find next section
-			for(int j=0,rowcheck1='1',rowcheck2='1';j<2;){
-				rowcheck1=getc(filePtr);
-				if(rowcheck1=='\n'){
-					j++;
-				}
-				rowcheck2=getc(filePtr);
-				if(rowcheck2=='\n'){
-					break;
-				}else{
-					j=0;
-					rowcheck2=rowcheck1;
-				}
-			}
+			ptrMove(filePtr);
 			
 			fscanf(filePtr,"%d",&codeLength);
 			continue;
@@ -59,9 +62,21 @@ int main(){
 		//get content
 		for(int i=0; i <codeLength;i++){
 			fscanf(filePtr,"%d",&codeContent[i]);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		}
 
-		//find smallest and convert content to binary,find 
+		//find smallest ,convert content to binary and look for wrong content
 		for(int x=0; x <codeLength;x++){
 			if(codeContent[x]==0){
 				badcode=3;
@@ -72,21 +87,16 @@ int main(){
 			codeContent[x]=(int)round((float)codeContent[x]/smallest)-1;
 		}
 		
-		if(badcode==3){
-			puts("badcode(content length is wrong)");
-			fscanf(filePtr,"%d",&codeLength);
-			continue;
-		}
-		
 		for(int i=0; i<codeLength; i++){
-			if(codeContent[i]==0||codeContent[i]==1){
-			}else{
-				badcode=4;
-			}
+			if(codeContent[i]!=0&&codeContent[i]!=1)
+				badcode=3;
 		}
 		
-		if(badcode==4){
+		if(badcode==3){
 			puts("badcode(code content has wrong)");
+			
+			ptrMove(filePtr);
+			
 			fscanf(filePtr,"%d",&codeLength);
 			continue;
 		}
