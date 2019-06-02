@@ -9,11 +9,10 @@ int main(){
     unsigned int codeLength,count=1;
     int smallest =150;
     int encodeLength,hold;
-    int realc,realk=0;
-    unsigned int badcode=0;
+    unsigned int badcode,realc,realk,rowcounter=0;
     int codeContent[200];
     int encodeContent[34];
-    char rowcheck='1';
+    char rowcheck1,rowcheck2;
 
 
     //check file and get file pointer
@@ -38,16 +37,20 @@ int main(){
 		}else{
 			puts("bad code(wrong code length)");
 			
-			for(int j=0;j<2;){
-				while(rowcheck!='\n'){
-					rowcheck=getc(filePtr);
+			//find next section
+			for(int j=0,rowcheck1='1',rowcheck2='1';j<2;){
+				rowcheck1=getc(filePtr);
+				if(rowcheck1=='\n'){
+					j++;
 				}
-				
+				rowcheck2=getc(filePtr);
+				if(rowcheck2=='\n'){
+					break;
+				}else{
+					j=0;
+					rowcheck2=rowcheck1;
+				}
 			}
-			
-
-
-
 			
 			fscanf(filePtr,"%d",&codeLength);
 			continue;
@@ -58,7 +61,7 @@ int main(){
 			fscanf(filePtr,"%d",&codeContent[i]);
 		}
 
-		//find smallest and convert content to binary
+		//find smallest and convert content to binary,find 
 		for(int x=0; x <codeLength;x++){
 			if(codeContent[x]==0){
 				badcode=3;
