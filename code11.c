@@ -5,7 +5,7 @@
 
 int main(){
 
-    FILE *filePtr;
+    FILE *filePtr,*prePtr;
     unsigned int codeLength,count=1;
     int smallest =150;
     int encodeLength,hold;
@@ -53,16 +53,17 @@ int main(){
 			encodeLength= (codeLength-11)/6;
 		}else{
 			puts("bad code(wrong code length)");
-			
 			ptrMove(filePtr);
-			
 			fscanf(filePtr,"%d",&codeLength);
 			continue;
 		}
 		
+		prePtr=filePtr;
+		
 		//get content
 		for(int i=0; i <codeLength;i++){
 			fscanf(filePtr,"%d",&codeContent[i]);
+			
 			
 			//check content amount
 			//if(getc(filePtr)=='\n'){
