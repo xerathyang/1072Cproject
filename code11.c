@@ -70,20 +70,15 @@ int main(){
 			if(codeContent[x]<smallest)
 				smallest= codeContent[x];
 		}
-		printf("%d",smallest);
+		//printf("%d",smallest);
 		for(int i=0; i<codeLength; i++){
 			codeContent[i]=(int)round((float)codeContent[i]/smallest)-1;
-			if(codeContent[i]!=0&&codeContent[i]!=1)
-				badcode=4;
-		}
-		
-		if(badcode==4){
-			puts("bad code(code content has wrong)");
-			
-			ptrMove(filePtr);
-			
-			fscanf(filePtr,"%d",&codeLength);
-			continue;
+			if(codeContent[i]!=0&&codeContent[i]!=1){
+				puts("bad code(code content has wrong)");
+				ptrMove(filePtr);
+				fscanf(filePtr,"%d",&codeLength);
+				continue;
+			}
 		}
 		
 		//check the start code and whether it is reverse or not
@@ -96,16 +91,18 @@ int main(){
 				codeContent[codeLength-z-1]=hold;
 			}
 		}else{
-			badcode=1;
+			puts("bad code(start code lost)");
+			fscanf(filePtr,"%d",&codeLength);
+			continue;
 		}
 		
 		//for test
-		//puts("");
-		//for(int i=0; i<codeLength; i++){
-		//	printf("%d ",codeContent[i]);
-		//	if((i+1)%10==0)
-		//		puts("");
-		//}
+		puts("");
+		for(int i=0; i<codeLength; i++){
+			printf("%d ",codeContent[i]);
+			if((i+1)%10==0)
+				puts("");
+		}
 		
 		//detect code and decode
 		for(int y=0; y<encodeLength;y++){
@@ -146,24 +143,13 @@ int main(){
 				if(y==encodeLength-2||y==encodeLength-1){
 					encodeContent[y]=11;
 				}else{
-					badcode=2;
+					puts("bad code(encoding code not find)");
+					fscanf(filePtr,"%d",&codeLength);
+					continue;
 				}
 			}	
 		}
-		
-		//output bad code
-		if(badcode==1){
-			puts("bad code(start code lost)");
-			system("pause");
-			fscanf(filePtr,"%d",&codeLength);
-			continue;
-		}else if(badcode==2){
-			puts("bad code(encoding code not find)");
-			system("pause");
-			fscanf(filePtr,"%d",&codeLength);
-			continue;
-		}
-		
+			
 		//C Check
 		realc=0;
 		for(int i=1; i<=encodeLength-2; i++){
