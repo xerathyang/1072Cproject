@@ -47,6 +47,8 @@ int main(){
 		puts("");
 		printf("Case %d: ",count);
 		count++;
+		badcode=0;
+		smallest=150;
 		
 		//check code length
 		if((codeLength-11)%6==0){
@@ -65,16 +67,12 @@ int main(){
 
 		//find smallest ,convert content to binary and look for wrong content
 		for(int x=0; x <codeLength;x++){
-			if(codeContent[x]==0){
-				badcode=4;
-				break;
-			}
 			if(codeContent[x]<smallest)
 				smallest= codeContent[x];
-			codeContent[x]=(int)round((float)codeContent[x]/smallest)-1;
 		}
-		
+		printf("%d",smallest);
 		for(int i=0; i<codeLength; i++){
+			codeContent[i]=(int)round((float)codeContent[i]/smallest)-1;
 			if(codeContent[i]!=0&&codeContent[i]!=1)
 				badcode=4;
 		}

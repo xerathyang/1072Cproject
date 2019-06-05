@@ -5,174 +5,496 @@
 
 int main(){
 	
-	FILE *pFile;
-	pFile= fopen("test.txt","w");
-	
 	srand((unsigned)time(NULL));
 	
-	unsigned int testNum,testBase,hold,counter=0;
+	unsigned int testNum,testBase,hold,counter,realc,realk=0;
+	unsigned int ans[60];
 	
 	void changeLine(){
 		counter++;
 		if(counter%10==0){
-			sprintf(pFile,'\n');
+			printf("%c",'\n');
 		}else{
-			sprintf(pFile,'\0');
+			printf("%c",'\0');
 		}
 	}
 	
-	for(int x=1; x<=10; x++){
+	counter=0;	
+	testNum=rand()%10+1;
+	testBase=rand()%50+1;
 		
-		counter=0;	
-		testNum=rand()%150+1;
-		testBase=rand()%100+1;
-		
-		sprintf(pFile,"%d",testNum);
-		sprintf(pFile,'\n');
+	printf("%d",(testNum+2)*6+11);
+	printf("%c",'\n');
 	
-		for(int y=0; y<testNum; y++){
-			hold= rand()%11;
-			switch(hold){
-				case 0:
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					break;
-				case 1:
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					break;
-				case 2:
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					break;
-				case 3:
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					break;
-				case 4:
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					break;
-				case 5:
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					break;
-				case 6:
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					break;
-				case 7:
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					break;
-				case 8:
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					break;
-				case 9:
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					break;
-				case 10:
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase*2);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					sprintf(pFile,"%d",testBase);
-					changeLine();
-					break;
-				default:
-					puts("wrong");
-			}
-			
+	printf("%d",testBase);
+	changeLine();
+	printf("%d",testBase);
+	changeLine();
+	printf("%d",testBase*2);
+	changeLine();
+	printf("%d",testBase*2);
+	changeLine();
+	printf("%d",testBase);
+	changeLine();
+	
+	printf("%d",testBase);
+	changeLine();
+	
+	for(int y=0; y<testNum; y++){
+		hold= rand()%11;
+		ans[y]=hold;
+		switch(hold){
+			case 0:
+				printf("%d",testBase*2);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				break;
+			case 1:
+				printf("%d",testBase*2);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase*2);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				break;
+			case 2:
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase*2);
+				changeLine();
+				printf("%d",testBase*2);
+				changeLine();
+				break;
+			case 3:
+				printf("%d",testBase*2);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase*2);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				break;
+			case 4:
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase*2);
+				changeLine();
+				printf("%d",testBase*2);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				break;
+			case 5:
+				printf("%d",testBase*2);
+				changeLine();
+				printf("%d",testBase*2);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				break;
+			case 6:
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase*2);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase*2);
+				changeLine();
+				break;
+			case 7:
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase*2);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase*2);
+				changeLine();
+				break;
+			case 8:
+				printf("%d",testBase*2);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase*2);
+				changeLine();
+				break;
+			case 9:
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase*2);
+				changeLine();
+				break;
+			case 10:
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase*2);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				printf("%d",testBase);
+				changeLine();
+				break;
+			default:
+				puts("wrong");
 		}
-	
+		
+		printf("%d",testBase);
+		changeLine();
 	}
 	
-	fclose(pFile);
+	realc=0;
+	for(int i=1; i<=counter; i++){
+		realc+=((counter-i)%10+1)*ans[i-1];
+	}
+	realc%=11;
 	
+	realk=0;
+	for(int i=1; i<=counter+1;i++){
+		realk+=((counter-i+1)%9+1)*ans[i-1];
+	}
+	realk=realk%9;
+
+	switch(realc){
+		case 0:
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			break;
+		case 1:
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			break;
+		case 2:
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			break;
+		case 3:
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			break;
+		case 4:
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			break;
+		case 5:
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			break;
+		case 6:
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			break;
+		case 7:
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			break;
+		case 8:
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			break;
+		case 9:
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			break;
+		case 10:
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			break;
+		default:
+			puts("wrong");
+	}
+	
+	printf("%d",testBase);
+	changeLine();
+	
+	switch(realk){
+		case 0:
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			break;
+		case 1:
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			break;
+		case 2:
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			break;
+		case 3:
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			break;
+		case 4:
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			break;
+		case 5:
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			break;
+		case 6:
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			break;
+		case 7:
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			break;
+		case 8:
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			break;
+		case 9:
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			break;
+		case 10:
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase*2);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			printf("%d",testBase);
+			changeLine();
+			break;
+		default:
+			puts("wrong");
+	}
+	
+	
+	printf("%d",testBase);
+	changeLine();	
+	
+	printf("%d",testBase);
+	changeLine();
+	printf("%d",testBase);
+	changeLine();
+	printf("%d",testBase*2);
+	changeLine();
+	printf("%d",testBase*2);
+	changeLine();
+	printf("%d",testBase);
+	
+	puts("");
+	printf("c=%d,k=%d",realc,realk);
+	puts("");
+	for(int x=0; x<testNum; x++){
+		if(ans[x]==10){
+			printf("%s","-");
+		}else{
+			printf("%d",ans[x]);
+		}
+	}
 }
