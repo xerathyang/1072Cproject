@@ -10,168 +10,173 @@ int main(){
 	
 	srand((unsigned)time(NULL));
 	
-	unsigned int testNum,testBase,hold,counter=0;
-	char testContent[600];
+	unsigned int testNum,testBase,hold,counter1,counter2=0;
+	char testContent[2000];
 	
 	void changeLine(){
-		counter++;
-		if(counter%10==0){
-			snprintf(testContent,1,'\n');
+		counter1++;
+		counter2++;
+		if(counter1%10==0){
+			snprintf(testContent,1,"%c",'\n');
 		}else{
-			snprintf(testContent,1,'\0');
+			snprintf(testContent,1,"%c",'\0');
 		}
 	}
 	
 	for(int x=1; x<=10; x++){
-	
+		
+		counter1=0;
 		testNum=rand()%150+1;
 		testBase=rand()%100+1;
 		
-		sprintf(testContent,"%d",testNum);
-		sprintf(testContent,'\n');
+		snprintf(testContent,sizeof(testNum),"%d",testNum);
+		snprintf(testContent,1,"%c",'\n');
 	
 		for(int y=0; y<testNum; y++){
 			hold= rand()%11;
 			switch(hold){
 				case 0:
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
 					break;
 				case 1:
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
 					break;
 				case 2:
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
 					break;
 				case 3:
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
 					break;
 				case 4:
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
 					break;
 				case 5:
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
 					break;
 				case 6:
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
 					break;
 				case 7:
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
 					break;
 				case 8:
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
 					break;
 				case 9:
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
 					break;
 				case 10:
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase*2);
+					snprintf(testContent,3,"%d",testBase*2);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
-					sprintf(testContent,"%d",testBase);
+					snprintf(testContent,3,"%d",testBase);
 					changeLine();
 					break;
 				default:
 					puts("wrong");
+					system("pause");
+					exit(0);
 			}
 			
 		}
 	
 	}
+	fwrite(testContent,1,sizeof(testContent),pFile);
 	
 	fclose(pFile);
 	

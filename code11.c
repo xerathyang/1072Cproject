@@ -58,29 +58,9 @@ int main(){
 			continue;
 		}
 		
-		prePtr=filePtr;
-		
 		//get content
 		for(int i=0; i <codeLength;i++){
 			fscanf(filePtr,"%d",&codeContent[i]);
-			
-			
-			//check content amount
-			//if(getc(filePtr)=='\n'){
-			//	if(getc(filePtr)=='\n'){
-			//		badcode=3;
-			//		fseek(filePtr,-2,SEEK_CUR);
-			//		break;
-			//	}
-			//	fseek(filePtr,-1,SEEK_CUR);
-			//}
-			//fseek(filePtr,-1,SEEK_CUR);
-		}
-		
-		if(badcode==3){
-			puts("bad code(content amounts wrong)");
-			fscanf(filePtr,"%d",&codeLength);
-			continue;
 		}
 
 		//find smallest ,convert content to binary and look for wrong content
