@@ -97,12 +97,12 @@ int main(){
 		}
 		
 		//for test
-		puts("");
-		for(int i=0; i<codeLength; i++){
-			printf("%d ",codeContent[i]);
-			if((i+1)%10==0)
-				puts("");
-		}
+		//puts("");
+		//for(int i=0; i<codeLength; i++){
+		//	printf("%d ",codeContent[i]);
+		//	if((i+1)%10==0)
+		//		puts("");
+		//}
 		
 		//detect code and decode
 		for(int y=0; y<encodeLength;y++){
@@ -133,8 +133,8 @@ int main(){
 			//10001
 			}else if(codeContent[6*(y+1)]==1&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==0&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==1){
 				encodeContent[y]=8;
-			//10001
-			}else if(codeContent[6*(y+1)]==1&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==0&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==1){
+			//00001
+			}else if(codeContent[6*(y+1)]==0&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==0&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==1){
 				encodeContent[y]=9;
 			//00100
 			}else if(codeContent[6*(y+1)]==0&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==1&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==0){
