@@ -13,6 +13,7 @@ int main(){
     int codeContent[200]={0};
     int encodeContent[34]={0};
     char rowcheck1,rowcheck2;
+	char fileName[50];
 	
 	void ptrMove(FILE *pFile){
 		//find next section
@@ -30,9 +31,12 @@ int main(){
 				}
 			}
 	}
+	
+	printf("%s","Enter the file name(included .txt):");
+	scanf("%s",fileName);
 
     //check file and get file pointer
-    if((filePtr=fopen("badtest.txt","r"))==NULL){
+    if((filePtr=fopen(fileName,"r"))==NULL){
         puts("Couldnt find file.");
 		system("pause");
         exit(0);
@@ -97,12 +101,12 @@ int main(){
 		}
 		
 		//for test
-		puts("");
-		for(int i=0; i<codeLength; i++){
-			printf("%d ",codeContent[i]);
-			if((i+1)%10==0)
-				puts("");
-		}
+		//puts("");
+		//for(int i=0; i<codeLength; i++){
+		//	printf("%d ",codeContent[i]);
+		//	if((i+1)%10==0)
+		//		puts("");
+		//}
 		
 		//detect code and decode
 		for(int y=0; y<encodeLength;y++){
