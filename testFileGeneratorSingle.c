@@ -203,7 +203,7 @@ for(int x=0; x<need; x++){
 	for(int i=1; i<=testNum+1;i++){
 		realk+=((testNum-i+1)%9+1)*ans[i-1];
 	}
-	realk=realk%9;
+	realk=realk%11;
 
 	switch(realc){
 		case 0:
