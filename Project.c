@@ -48,9 +48,10 @@ int main(){
 		}
 		//convert content to binary and look for wrong content
 		for(int i=0; i<codeLength; i++){
-			codeContent[i]=(int)round((float)codeContent[i]/smallest)-1;
-			if(codeContent[i]==0||codeContent[i]==1){
-				
+			if((float)codeContent[i]/smallest<2.2105&&(float)codeContent[i]/smallest>1.8095){
+				codeContent[i]=(int)round((float)codeContent[i]/smallest)-1;
+			}else if((float)codeContent[i]/smallest<1.1053&&(float)codeContent[i]/smallest>0.9047){
+				codeContent[i]=(int)round((float)codeContent[i]/smallest)-1;
 			}else{
 				badcode=1;
 				break;
@@ -58,6 +59,8 @@ int main(){
 		}
 		
 		if(badcode==1){
+			puts("bad code(code content has wrong)");
+			fscanf(filePtr,"%d",&codeLength);
 			continue;
 		}
 		

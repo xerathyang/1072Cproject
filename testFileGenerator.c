@@ -1,170 +1,177 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 
 int main(){
 	
-	FILE *pFile;
-	pFile= fopen("test.txt","w");
+	char fileName[60];
+	FILE *pTest,*pAns;
+	unsigned int testNum,testBase,hold,counter1,counter2,testLength=0;
+
+	printf("%s","Enter the test file name you want(NOT included .txt): ");
+	scanf("%s",&fileName);
+	printf("%s","\nEnter the test number you need: ");
+	scanf("%d",&testLength);
+	
+	pTest= fopen((strcat(fileName,".txt")),"w+");
+	pAns= fopen((strcat(fileName,"Ans.txt")),"w+");
 	
 	srand((unsigned)time(NULL));
-	
-	unsigned int testNum,testBase,hold,counter1,counter2=0;
-	char testContent[2000];
 	
 	void changeLine(){
 		counter1++;
 		counter2++;
 		if(counter1%10==0){
-			snprintf(testContent,1,"%c",'\n');
+			fprintf(pTest,"%c",'\n');
 		}else{
-			snprintf(testContent,1,"%c",'\0');
+			fprintf(pTest,"%c",'\0');
 		}
 	}
 	
-	for(int x=1; x<=10; x++){
+	for(int x=1; x<=testLength; x++){
 		
 		counter1=0;
 		testNum=rand()%150+1;
 		testBase=rand()%100+1;
 		
-		snprintf(testContent,sizeof(testNum),"%d",testNum);
-		snprintf(testContent,1,"%c",'\n');
+		fprintf(pTest,"%d",testNum);
+		fprintf(pTest,"%c",'\n');
 	
-		for(int y=0; y<testNum; y++){
+		for(int y=1; y<=testNum; y++){
 			hold= rand()%11;
 			switch(hold){
 				case 0:
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
 					break;
 				case 1:
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
 					break;
 				case 2:
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
 					break;
 				case 3:
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
 					break;
 				case 4:
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
 					break;
 				case 5:
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
 					break;
 				case 6:
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
 					break;
 				case 7:
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
 					break;
 				case 8:
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
 					break;
 				case 9:
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
 					break;
 				case 10:
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase*2);
+					fprintf(pTest,"%d",testBase*2);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
-					snprintf(testContent,3,"%d",testBase);
+					fprintf(pTest,"%d",testBase);
 					changeLine();
 					break;
 				default:
@@ -176,8 +183,8 @@ int main(){
 		}
 	
 	}
-	fwrite(testContent,1,sizeof(testContent),pFile);
 	
-	fclose(pFile);
+	fclose(pTest);
+	fclose(pAns);
 	
 }
