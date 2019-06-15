@@ -1,0 +1,12 @@
+Case 1: badcode: 1
+Case 2: badcode: 1
+Case 3: badcode: 2
+Case 4: badcode: 4
+Case 5: badcode: 2
+Case 6: badcode: 6
+Case 7: badcode: 5
+Case 8: badcode: 5
+Case 9: badcode: 2
+Case 10: badcode: 3
+1: content, 2: length, 3&4: startcode,
+5: bad C, 6: bad K

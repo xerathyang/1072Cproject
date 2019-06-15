@@ -9,7 +9,7 @@ int main(){
     unsigned int codeLength,count=1;
     int smallest =150;
     int encodeLength,hold;
-    unsigned int badcode,realc,realk=0;
+    unsigned int badcode,realc,realk,errpos=0;
     int codeContent[200]={0};
     int encodeContent[34]={0};
 	char fileName[50];
@@ -54,19 +54,22 @@ int main(){
 		for(int i=0; i<codeLength; i++){
 			if(badcode==1)
 				break;
-			if((float)codeContent[i]/smallest<2.2105&&(float)codeContent[i]/smallest>1.8095){
+			if((float)codeContent[i]/smallest<2.2105263157894736842105263157895&&(float)codeContent[i]/smallest>1.8095238095238095238095238095238){
 				codeContent[i]=(int)round((float)codeContent[i]/smallest)-1;
-			}else if((float)codeContent[i]/smallest<1.1053&&(float)codeContent[i]/smallest>0.9047){
+			}else if((float)codeContent[i]/smallest<1.1052631578947368421052631578947&&(float)codeContent[i]/smallest>0.9047619047619047619047619047619){
 				codeContent[i]=(int)round((float)codeContent[i]/smallest)-1;
 			}else{
 				badcode=1;
+				errpos=i;
 				break;
 			}
 		}
 		
 		if(badcode==1){
-			puts("bad code(code content has wrong)");
+			printf("bad code(code content has wrong: %d)\n",errpos);
 			fscanf(filePtr,"%d",&codeLength);
+			if(codeLength==0)
+				break;
 			continue;
 		}
 		
