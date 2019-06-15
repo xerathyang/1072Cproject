@@ -11,7 +11,8 @@ int main(){
 	
 	FILE *pTest,*pAns;
 	char fileName[60];
-	unsigned int testNum,testBase,hold,counter,realc,realk,testLength=0;
+	char ans[150];
+	unsigned int testNum,testBase,hold,counter,realc,realk,testLength,badtest,badcode=0;
 	
 	void changeLine(){
 		counter++;
@@ -26,6 +27,12 @@ int main(){
 	scanf("%s",&fileName);
 	printf("%s","\nEnter the test number you need: ");
 	scanf("%d",&testLength);
+	printf("%s","\nDo you need random wrong in code? 1/0 for yes/no.\n");
+	scanf("%d",&badtest);
+	
+	if(badtest!=0){
+		badcode=rand()%
+	}
 	
 	pTest= fopen((strcat(fileName,".txt")),"w+");
 	pAns= fopen((strcat(fileName,"Ans.txt")),"w+");
@@ -505,6 +512,10 @@ int main(){
 	
 		fprintf(pTest,"%c",'\n');
 		fprintf(pTest,"%c",'\n');
+		
+		switch(badcode){
+			
+		}
 	
 		for(int x=0; x<testNum; x++){
 			if(ans[x]==10){

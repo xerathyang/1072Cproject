@@ -43,11 +43,17 @@ int main(){
 
 		//find smallest
 		for(int x=0; x <codeLength;x++){
+			if(codeContent[x]==0){
+				badcode=1;
+				break;
+			}
 			if(codeContent[x]<smallest)
 				smallest= codeContent[x];
 		}
 		//convert content to binary and look for wrong content
 		for(int i=0; i<codeLength; i++){
+			if(badcode==1)
+				break;
 			if((float)codeContent[i]/smallest<2.2105&&(float)codeContent[i]/smallest>1.8095){
 				codeContent[i]=(int)round((float)codeContent[i]/smallest)-1;
 			}else if((float)codeContent[i]/smallest<1.1053&&(float)codeContent[i]/smallest>0.9047){
