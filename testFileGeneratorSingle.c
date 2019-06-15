@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <math.h>
 
 
 int main(){
@@ -12,7 +13,7 @@ int main(){
 	FILE *pTest,*pAns;
 	char fileName[60];
 	char ans[150];
-	unsigned int testNum,testBase,hold,counter,realc,realk,testLength,badtest,badcode=0;
+	unsigned int testNum,testBase,hold,counter,realc,realk,testLength,badtest,badcode,contentMis=0;
 	
 	void changeLine(){
 		counter++;
@@ -23,15 +24,73 @@ int main(){
 		}
 	}
 	
+	int baseFloat(int testBase, int multi){
+		switch(rand()%11){
+			case 0:
+				return testBase*multi;
+				break;
+			case 1:
+				if((int)round((float)testBase*1.01*multi)>200){
+					return 200;
+					break;
+				}
+				return (int)round((float)testBase*1.01*multi);
+				break;
+			case 2:
+				if((int)round((float)testBase*1.02*multi)>200){
+					return 200;
+					break;
+				}
+				return (int)round((float)testBase*1.02*multi);
+				break;
+			case 3:
+				if((int)round((float)testBase*1.03*multi)>200){
+					return 200;
+					break;
+				}
+				return (int)round((float)testBase*1.03*multi);
+				break;
+			case 4:
+				if((int)round((float)testBase*1.04*multi)>200){
+					return 200;
+					break;
+				}
+				return (int)round((float)testBase*1.04*multi);
+				break;
+			case 5:
+				if((int)round((float)testBase*1.05*multi)>200){
+					return 200;
+					break;
+				}
+				return (int)round((float)testBase*1.05*multi);
+				break;
+			case 6:
+				return (int)round((float)testBase*0.99*multi);
+				break;
+			case 7:
+				return (int)round((float)testBase*0.98*multi);
+				break;
+			case 8:
+				return (int)round((float)testBase*0.97*multi);
+				break;
+			case 9:
+				return (int)round((float)testBase*0.96*multi);
+				break;
+			case 10:
+				return (int)round((float)testBase*0.95*multi);
+				break;
+		}
+	}
+	
 	printf("%s","Enter the test file name you want(NOT included .txt): ");
 	scanf("%s",&fileName);
 	printf("%s","\nEnter the test number you need: ");
 	scanf("%d",&testLength);
-	printf("%s","\nDo you need random wrong in code? 1/0 for yes/no.\n");
+	printf("%s","\nDo you need random wrong in code? 1/0 for yes/no: ");
 	scanf("%d",&badtest);
 	
 	if(badtest!=0){
-		badcode=rand()%
+		badcode=rand()%6+1;
 	}
 	
 	pTest= fopen((strcat(fileName,".txt")),"w+");
@@ -39,168 +98,189 @@ int main(){
 	
 	
 	for(int x=0; x<testLength; x++){
+		
 		counter=0;
 		testNum=rand()%21+1;
 		testBase=rand()%100+1;
 		
+		if(badcode==1)
+			contentMis=rand()%testNum;
+		
 		fprintf(pTest,"%d",(testNum+2)*6+11);
 		fprintf(pTest,"%c",'\n');
 	
-		fprintf(pTest,"%d",testBase);
+		fprintf(pTest,"%d",baseFloat(testBase,1));
 		changeLine();
-		fprintf(pTest,"%d",testBase);
+		fprintf(pTest,"%d",baseFloat(testBase,1));
 		changeLine();
-		fprintf(pTest,"%d",testBase*2);
+		fprintf(pTest,"%d",baseFloat(testBase,2));
 		changeLine();
-		fprintf(pTest,"%d",testBase*2);
+		fprintf(pTest,"%d",baseFloat(testBase,2));
 		changeLine();
-		fprintf(pTest,"%d",testBase);
+		fprintf(pTest,"%d",baseFloat(testBase,1));
 		changeLine();
 	
-		fprintf(pTest,"%d",testBase);
+		fprintf(pTest,"%d",baseFloat(testBase,1));
 		changeLine();
 	
 		for(int y=0; y<testNum; y++){
 			hold= rand()%11;
 			ans[y]=hold;
+			
+			if(contentMis==y&&badcode==1){
+				fprintf(pTest,"%d",0);
+				changeLine();
+				fprintf(pTest,"%d",baseFloat(testBase,1));
+				changeLine();
+				fprintf(pTest,"%d",baseFloat(testBase,1));
+				changeLine();
+				fprintf(pTest,"%d",baseFloat(testBase,1));
+				changeLine();
+				fprintf(pTest,"%d",baseFloat(testBase,1));
+				changeLine();
+				fprintf(pTest,"%d",baseFloat(testBase,1));
+				changeLine();
+				continue;
+			}
+			
 			switch(hold){
 				case 0:
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
 					break;
 				case 1:
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
 					break;
 				case 2:
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
 					break;
 				case 3:
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
 					break;
 				case 4:
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
 					break;
 				case 5:
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
 					break;
 				case 6:
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
 					break;
 				case 7:
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
 					break;
 				case 8:
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
 					break;
 				case 9:
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
 					break;
 				case 10:
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase*2);
+					fprintf(pTest,"%d",baseFloat(testBase,2));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
-					fprintf(pTest,"%d",testBase);
+					fprintf(pTest,"%d",baseFloat(testBase,1));
 					changeLine();
 					break;
 				default:
 					puts("wrong");
 			}
 		
-			fprintf(pTest,"%d",testBase);
+			fprintf(pTest,"%d",baseFloat(testBase,1));
 			changeLine();
 		}
 	
@@ -220,275 +300,275 @@ int main(){
 
 		switch(realc){
 			case 0:
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
 				break;
 			case 1:
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
 				break;
 			case 2:
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
 				break;
 			case 3:
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
 				break;
 			case 4:
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
 				break;
 			case 5:
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
 				break;
 			case 6:
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
 				break;
 			case 7:
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
 				break;
 			case 8:
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
 				break;
 			case 9:
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
 				break;
 			case 10:
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
 				break;
 			default:
 				puts("wrong");
 		}
 	
-		fprintf(pTest,"%d",testBase);
+		fprintf(pTest,"%d",baseFloat(testBase,1));
 		changeLine();
 	
 		switch(realk){
 			case 0:
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
 				break;
 			case 1:
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
 				break;
 			case 2:
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
 				break;
 			case 3:
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
 				break;
 			case 4:
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
 				break;
 			case 5:
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
 				break;
 			case 6:
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
 				break;
 			case 7:
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
 				break;
 			case 8:
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
 				break;
 			case 9:
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
 				break;
 			case 10:
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase*2);
+				fprintf(pTest,"%d",baseFloat(testBase,2));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
-				fprintf(pTest,"%d",testBase);
+				fprintf(pTest,"%d",baseFloat(testBase,1));
 				changeLine();
 				break;
 			default:
@@ -497,18 +577,18 @@ int main(){
 		}
 	
 	
-		fprintf(pTest,"%d",testBase);
+		fprintf(pTest,"%d",baseFloat(testBase,1));
 		changeLine();	
 	
-		fprintf(pTest,"%d",testBase);
+		fprintf(pTest,"%d",baseFloat(testBase,1));
 		changeLine();
-		fprintf(pTest,"%d",testBase);
+		fprintf(pTest,"%d",baseFloat(testBase,1));
 		changeLine();
-		fprintf(pTest,"%d",testBase*2);
+		fprintf(pTest,"%d",baseFloat(testBase,2));
 		changeLine();
-		fprintf(pTest,"%d",testBase*2);
+		fprintf(pTest,"%d",baseFloat(testBase,2));
 		changeLine();
-		fprintf(pTest,"%d",testBase);
+		fprintf(pTest,"%d",baseFloat(testBase,1));
 	
 		fprintf(pTest,"%c",'\n');
 		fprintf(pTest,"%c",'\n');

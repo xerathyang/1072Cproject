@@ -138,6 +138,7 @@ int main(){
 			}else if(codeContent[6*(y+1)]==0&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==1&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==0){
 				encodeContent[y]=10;
 			}else{
+				//make sure c and k has number to compare
 				if(y==encodeLength-2||y==encodeLength-1){
 					encodeContent[y]=11;
 				}else{
