@@ -7,7 +7,8 @@ int main(){
 
     FILE *filePtr;
     unsigned int codeLength,count=1;
-    int encodeLength,hold,smallest;
+    int smallest =150;
+    int encodeLength,hold;
     unsigned int badcode,realc,realk=0;
     int codeContent[200]={0};
     int encodeContent[34]={0};
@@ -34,26 +35,19 @@ int main(){
 		count++;
 		badcode=0;
 		smallest=150;
-		hold=0;
-		
+
 		//get content
-		for(int i=0; i <codeLength-1;i++){
+		for(int i=0; i <codeLength;i++){
 			fscanf(filePtr,"%d",&codeContent[i]);
 		}
 
 		//find smallest
-		if((float)codeContent[1]/codeContent[0]<2.2105&&(float)codeContent[1]/codeContent[0]>1.8095){
-			smallest=codeContent[0];
-		}else if((float)codeContent[1]/codeContent[0]<1.1053&&(float)codeContent[1]/codeContent[0]>0.9047){
-			smallest=codeContent[0];
-		}else{
-			badcode=1;
-			break;
+		for(int x=0; x <codeLength;x++){
+			if(codeContent[x]<smallest)
+				smallest= codeContent[x];
 		}
 		//convert content to binary and look for wrong content
 		for(int i=0; i<codeLength; i++){
-			if(badcode!=0)
-				break;
 			if((float)codeContent[i]/smallest<2.2105&&(float)codeContent[i]/smallest>1.8095){
 				codeContent[i]=(int)round((float)codeContent[i]/smallest)-1;
 			}else if((float)codeContent[i]/smallest<1.1053&&(float)codeContent[i]/smallest>0.9047){
@@ -65,8 +59,7 @@ int main(){
 		}
 		
 		if(badcode==1){
-			puts("bad code(code content has wrong or start code has wrong)");
-			system("pause");
+			puts("bad code(code content has wrong)");
 			fscanf(filePtr,"%d",&codeLength);
 			continue;
 		}
