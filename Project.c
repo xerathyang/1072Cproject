@@ -8,7 +8,7 @@ int main(){
     FILE *filePtr;
     unsigned int codeLength,count=1;
     int smallest =150;
-    int encodeLength,hold;
+    int encodeLength,hold,i,x,y,z;
     unsigned int badcode,realc,realk,errpos=0;
     int codeContent[200]={0};
     int encodeContent[34]={0};
@@ -37,12 +37,12 @@ int main(){
 		smallest=150;
 
 		//get content
-		for(int i=0; i <codeLength;i++){
+		for( i=0; i <codeLength;i++){
 			fscanf(filePtr,"%d",&codeContent[i]);
 		}
 
 		//find smallest
-		for(int x=0; x <codeLength;x++){
+		for( x=0; x <codeLength;x++){
 			if(codeContent[x]==0){
 				badcode=1;
 				break;
@@ -51,7 +51,7 @@ int main(){
 				smallest= codeContent[x];
 		}
 		//convert content to binary and look for wrong content
-		for(int i=0; i<codeLength; i++){
+		for( i=0; i<codeLength; i++){
 			if(badcode==1)
 				break;
 			if((float)codeContent[i]/smallest<2.2105263157894736842105263157895&&(float)codeContent[i]/smallest>1.8095238095238095238095238095238){
@@ -86,7 +86,7 @@ int main(){
 		if(codeContent[0]==0&&codeContent[1]==0&&codeContent[2]==1&&codeContent[3]==1&&codeContent[4]==0&&codeContent[codeLength-1]==0&&codeContent[codeLength-2]==1&&codeContent[codeLength-3]==1&&codeContent[codeLength-4]==0&&codeContent[codeLength-5]==0){
 
 		}else if(codeContent[0]==0&&codeContent[1]==1&&codeContent[2]==1&&codeContent[3]==0&&codeContent[4]==0&&codeContent[codeLength-1]==0&&codeContent[codeLength-2]==0&&codeContent[codeLength-3]==1&&codeContent[codeLength-4]==1&&codeContent[codeLength-5]==0){
-			for(int z=0;z<=codeLength/2;z++){
+			for( z=0;z<=codeLength/2;z++){
 				hold=codeContent[z];
 				codeContent[z]=codeContent[codeLength-z-1];
 				codeContent[codeLength-z-1]=hold;
@@ -99,14 +99,14 @@ int main(){
 
 		//for test
 		//puts("");
-		//for(int i=0; i<codeLength; i++){
+		//for( i=0; i<codeLength; i++){
 		//	printf("%d ",codeContent[i]);
 		//	if((i+1)%10==0)
 		//		puts("");
 		//}
 
 		//detect code and decode
-		for(int y=0; y<encodeLength;y++){
+		for( y=0; y<encodeLength;y++){
 			//10000
 			if(codeContent[6*(y+1)]==1&&codeContent[6*(y+1)+1]==0&&codeContent[6*(y+1)+2]==0&&codeContent[6*(y+1)+3]==0&&codeContent[6*(y+1)+4]==0){
 				encodeContent[y]=0;
@@ -154,7 +154,7 @@ int main(){
 
 		//C Check
 		realc=0;
-		for(int i=1; i<=encodeLength-2; i++){
+		for( i=1; i<=encodeLength-2; i++){
 			realc+=((encodeLength-2-i)%10+1)*encodeContent[i-1];
 		}
 		realc=realc%11;
@@ -167,7 +167,7 @@ int main(){
 
 		//K Check
 		realk=0;
-		for(int i=1; i<=encodeLength-1;i++){
+		for( i=1; i<=encodeLength-1;i++){
 			realk+=((encodeLength-1-i)%9+1)*encodeContent[i-1];
 		}
 		realk=realk%11;
@@ -179,7 +179,7 @@ int main(){
 		}
 
 		//print the encode content
-		for(int r=0; r<encodeLength-2; r++){
+		for( r=0; r<encodeLength-2; r++){
 			if(encodeContent[r]!=10){
 				printf("%d",encodeContent[r]);
 			}else{
