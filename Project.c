@@ -8,7 +8,7 @@ int main(){
     FILE *filePtr;
     unsigned int codeLength,count=1;
     int smallest =150;
-    int encodeLength,hold,i,x,y,z;
+    int encodeLength,hold,i,r,x,y,z;
     unsigned int badcode,realc,realk,errpos=0;
     int codeContent[200]={0};
     int encodeContent[34]={0};
